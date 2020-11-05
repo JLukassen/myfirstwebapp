@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/home/yitakumini/Desktop/darkSky/googleAPI.py"></script>]
+
+
+    <script src="https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyA0ddsSE8DUB0ZW0Fao9TXdvxvxYY8fYE4" async></script>
+
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/weather-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/weather-icons-wind.min.css"> */
+
+</head>
+
+<body>
+
+    */
+    <div class="jumbo text-center">
+        <div class="container">
+            <img src="/weather-icon.png" class="logo">
+            <h2>SkyCast</h2>
+
+            <br>
+
+            <h4>Enter a location or coordinate set to get started.</h4>
+
+            <br> */
+
+
+
+
+
+            <fieldset id="locationField">
+                <div class="col-sm-12 col-md-12 col-lg-12 location-wrapper">
+                    <br>
+
+                    <label for="city"><span>Location</span></label>
+                    <br>
+
+                    <textarea name="address" class="address-input" rows="1" placeholder="Enter a location"></textarea>
+
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12 submit-wrapper">
+
+                    <form action="myFunction" method="GET">
+                        <div class="col-sm-12 col-md-6 col-lg-6 coordinate-set">
+                            <label><span>Latitude</span></label>
+                            <input type="text" name="latitude" placeholder="e.g. 39.7392" class="coord-inputs" id="latitude">
+                        </div>
+
+                        <div class="col-lg-12 lat-lng-wrapper">
+                            <div class="col-sm-12 col-md-6 col-lg-6 coordinate-set">
+
+
+                                <label><span>Longitude</span></label>
+                                <input type="text" name="longitude" placeholder="e.g. -104.9903" class="coord-inputs" id="longitude">
+
+
+                            </div>
+
+
+                        </div>
+                        <input type="button" name="submit-address" id="submit-address" value="submit-address" onclick="myFunction()">
+                </div>
+                </form>
+                <script>
+                    function myFunction() {
+                        var lat = parseInt(document.getElementById("latitude").value);
+                        var lon = parseInt(document.getElementById("longitude").value);
+
+
+
+
+
+
+                    }
+                </script>
+
+            </fieldset>
+            <br>
+        </div>
+    </div>
+
+
+    <div class="weather-details">
+        <div class="weather-container">
+            <nav class="navbar navbar-default navbar-fixed-top" id="weather-nav">
+                <div class="container" id="weather-nav-container">
+                    <div id="navbar" class="navbar-collapse collapse">
+
+
+
+
+
+
+
+
+                        <form id="new-address-form">
+                            <ul class="nav navbar-nav" id="search-address-ul">
+                                <li>
+                                    <div>
+                                        <input class="form-control" id="new-address" type="text" placeholder="Enter a location" list="searches" name="new-search" autocomplete="off" required/>
+                                    </div>
+
+                                    <datalist id="searches">
+						  <option></option>
+						  <option></option>
+						  <option></option>
+						  <option></option>
+						  <option></option>
+						</datalist>
+                                </li>
+                                <li>
+                                    <button class="btn btn-default new-address" id="submit-new-address" type="submit" value="find">GO</button>
+                                </li>
+                            </ul>
+                        </form>
+
+
+
+
+
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" id="display-new-address"><i class="fa fa-clock-o"></i></a>
+                            </li>
+                            <!-- forecast time -->
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </nav>
+
+
+
+
+            <div class="col-lg-12">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-sm-12 panel panel-default">
+                    <br>
+                    <div class="loader-box">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="col-lg-6" id="weather-row-header-wrapper">
+                        <div>
+                            <h3 class="weather-row-header-label"><strong id="weatherForLabel">Weather for...</strong> </h3>
+                            <br>
+                            <br>
+                            <br>
+                            <h4 id="city"></h4>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <br>
+                        <div id="map"></div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-md-12 col-sm-12 col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h3 class="no-margin"><strong>Today's Forecast</strong> <small class="text-warning hidden-sm hidden-xs" id="todayDate"></small></h3>
+                            </div>
+
+                            <div class="panel-body">
+                                H: <b id="dailyHigh"></b><i class="wi wi-degrees"></i> L: <b id="dailyLow"></b><i class="wi wi-degrees"></i>
+                                <p>
+                                    <strong id="todaySummary"></strong>
+                                    <div id="todayPrecipIcon"></div>
+                                    <div>
+                                        <i class="wi wi-cloudy"></i>
+                                        <small id="todayCloudCover"></small><small>%</small>
+                                        <br>
+                                        <i class="wi wi-humidity"></i>
+                                        <small id="todayHumidity"></small><small>%</small> <br>
+                                    </div>
+
+                                    <i class="wi wi-strong-wind"></i>
+                                    <small id="todayWindSpeed"></small> mph 7 Day Forecast:
+                                    <div id="hourlyApparentTemp"></div>
+                                    &nbsp;&nbsp;
+                                    <br>
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
